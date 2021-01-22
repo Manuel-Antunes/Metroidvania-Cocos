@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "1f849864-a2eb-4661-ad2a-5908d5ef1609",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 831,
+  "height": 519,
+  "platformSettings": {},
+  "subMetas": {
+    "PlayStation - Castlevania Symphony of the Night - Minotaur": {
+      "ver": "1.0.4",
+      "uuid": "20c98906-360c-46a0-bd6b-06bc0ef955da",
+      "rawTextureUuid": "1f849864-a2eb-4661-ad2a-5908d5ef1609",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 831,
+      "height": 519,
+      "rawWidth": 831,
+      "rawHeight": 519,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
