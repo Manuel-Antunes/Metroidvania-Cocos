@@ -61,7 +61,7 @@ export default class Player extends Actor {
   }
   move(direction: DIRECTION) {
     if (this.state !== PLAYER_STATE.reface) {
-      if (direction === this.facing) {
+      if (direction === this.facing || (this.state === PLAYER_STATE.jumping_walking || this.state === PLAYER_STATE.jumping_idle || this.state === PLAYER_STATE.falling)) {
         this.direction = direction
       } else {
         this.reface(direction)
@@ -106,5 +106,16 @@ export default class Player extends Actor {
   refaceEnd() {
     this.node.setScale(this.node.scaleX * -1, this.node.scaleY)
     this.setState(PLAYER_STATE.idle_1)
+  }
+  onCollisionEnter(other: cc.Collider, self: cc.Collider) {
+    if (self.tag === 3) {
+      console.log(self.tag)
+      console.log("Currently colliding");
+    }
+  }
+  onCollisionExit(other, self) {
+    if (self.tag === 3) {
+      console.log("Done colliding");
+    }
   }
 }
