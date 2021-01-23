@@ -35,8 +35,12 @@ export default abstract class Actor extends cc.Component {
 
   onBeginContact(contact: any, selfCollider: cc.Collider, otherCollider: cc.Collider) {
     if (selfCollider.tag === 2) {
-      this.falling = true
+      this.hitTheFloor()
     }
+  }
+
+  hitTheFloor() {
+    this.falling = true
   }
 
 }
