@@ -48,6 +48,9 @@ export default class Player extends Actor {
       }
       this.rigidBody.applyForceToCenter(cc.v2(this.direction * this.walkForce, 0), true)
     }
+    if ((this.rigidBody.linearVelocity.x == 0 && this.rigidBody.linearVelocity.y == 0) && (this.state === PLAYER_STATE.walking_0 || this.state === PLAYER_STATE.walking_1)) {
+      this.setState(PLAYER_STATE.idle_0)
+    }
   }
   jump() {
     if (this.falling) {
@@ -64,13 +67,19 @@ export default class Player extends Actor {
     if (this.state !== state) {
       this.state = state
       const a = this.node.getComponent(cc.Animation)
-      a.play(state)
+      const states = a.play(state)
       this.setCurrentAnimation(a.currentClip)
     }
   }
   setCurrentAnimation(clip: cc.AnimationClip) {
     if (clip.name === PLAYER_STATE.walking_0) {
       const a = this.node.getComponent(cc.Animation)
+    }
+  }
+  onBeginContact(contact: any, selfCollider: cc.Collider, otherCollider: cc.Collider) {
+    super.onBeginContact(contact, selfCollider, otherCollider)
+    if (this.falling) {
+      this.setState(PLAYER_STATE.idle_0)
     }
   }
   onStartWalkingAnimationEnd() {

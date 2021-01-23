@@ -36,7 +36,6 @@ export default abstract class Actor extends cc.Component {
   onBeginContact(contact: any, selfCollider: cc.Collider, otherCollider: cc.Collider) {
     if (selfCollider.tag === 2) {
       this.falling = true
-      console.log('pão de milho')
     }
   }
 
