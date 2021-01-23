@@ -31,11 +31,15 @@ export default abstract class Actor extends cc.Component {
     this.maxVelocityX = 400
     this.rigidBody = this.node.getComponent(cc.RigidBody)
     this.falling = false
+    this.facing = DIRECTION.RIGHT
   }
 
   onBeginContact(contact: any, selfCollider: cc.Collider, otherCollider: cc.Collider) {
     if (selfCollider.tag === 2) {
       this.hitTheFloor()
+    }
+    if (selfCollider.tag === 3) {
+      console.log('YEah')
     }
   }
 

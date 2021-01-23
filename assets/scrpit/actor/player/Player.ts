@@ -16,6 +16,11 @@ export enum PLAYER_STATE {
   walking_1 = 'walking_1',
   jumping_idle = 'jumping_idle',
   jumping_walking = 'jumping_walking',
+  falling = 'falling',
+  jump_end = 'jump_end',
+  reface = 'reface',
+  attacking = 'attacking',
+  attacking_jumping = 'attacking_jumping'
 }
 
 @ccclass
@@ -31,6 +36,15 @@ export default class Player extends Actor {
 
   jumpForce: number
 
+  attack() {
+    if (this.state === PLAYER_STATE.idle_0 || this.state === PLAYER_STATE.idle_1) {
+      this.setState(PLAYER_STATE.attacking)
+    }
+    if (this.state === PLAYER_STATE.jumping_idle || this.state === PLAYER_STATE.jumping_walking || this.state === PLAYER_STATE.falling) {
+      this.setState(PLAYER_STATE.attacking_jumping)
+    }
+  }
+
   onLoad() {
     super.onLoad()
     this.walkForce = 15000
@@ -43,6 +57,15 @@ export default class Player extends Actor {
       (this.direction < 0 && this.rigidBody.linearVelocity.x > -this.maxVelocityX)
     ) {
       this.rigidBody.applyForceToCenter(cc.v2(this.direction * this.walkForce, 0), true)
+    }
+  }
+  move(direction: DIRECTION) {
+    if (this.state !== PLAYER_STATE.reface) {
+      if (direction === this.facing) {
+        this.direction = direction
+      } else {
+        this.reface(direction)
+      }
     }
   }
   jump() {
@@ -60,7 +83,7 @@ export default class Player extends Actor {
     if (this.state !== state) {
       this.state = state
       const a = this.node.getComponent(cc.Animation)
-      const states = a.play(state)
+      a.play(state)
       this.setCurrentAnimation(a.currentClip)
     }
   }
@@ -68,5 +91,20 @@ export default class Player extends Actor {
     if (clip.name === PLAYER_STATE.walking_0) {
       const a = this.node.getComponent(cc.Animation)
     }
+  }
+  reface(direction: DIRECTION) {
+    if (this.state !== PLAYER_STATE.jump_end && this.state !== PLAYER_STATE.jumping_walking && this.state !== PLAYER_STATE.jumping_idle && this.state !== PLAYER_STATE.falling) {
+      if (this.state !== PLAYER_STATE.idle_0 && this.state !== PLAYER_STATE.idle_1) {
+        this.setState(PLAYER_STATE.reface)
+      } else {
+        this.refaceEnd()
+      }
+      this.facing = direction
+      this.move(direction)
+    }
+  }
+  refaceEnd() {
+    this.node.setScale(this.node.scaleX * -1, this.node.scaleY)
+    this.setState(PLAYER_STATE.idle_1)
   }
 }

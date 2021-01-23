@@ -1,0 +1,57 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "attacking_jumping",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.08333333333333333,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "3fe58f05-584a-47a8-8b4d-65859a2a24b2"
+            }
+          },
+          {
+            "frame": 0.016666666666666666,
+            "value": {
+              "__uuid__": "f5526a70-f74d-4bbc-b592-e6d3a053c8b0"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "c76b7042-eb8e-42ae-99cb-e430c512d509"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "f5526a70-f74d-4bbc-b592-e6d3a053c8b0"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "3fe58f05-584a-47a8-8b4d-65859a2a24b2"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.08333333333333333,
+      "func": "onAnimationEnd",
+      "params": [
+        "attacking_jumping"
+      ]
+    }
+  ]
+}

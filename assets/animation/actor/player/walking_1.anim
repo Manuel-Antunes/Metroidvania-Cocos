@@ -111,5 +111,13 @@
       }
     }
   },
-  "events": []
+  "events": [
+    {
+      "frame": 0.75,
+      "func": "onAnimationEnd",
+      "params": [
+        "walking_1"
+      ]
+    }
+  ]
 }

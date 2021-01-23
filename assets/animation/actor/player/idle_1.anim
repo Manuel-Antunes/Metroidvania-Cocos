@@ -6,7 +6,7 @@
   "_duration": 0.16,
   "sample": 25,
   "speed": 1,
-  "wrapMode": 2,
+  "wrapMode": 1,
   "curveData": {
     "comps": {
       "cc.Sprite": {
@@ -39,5 +39,13 @@
       }
     }
   },
-  "events": []
+  "events": [
+    {
+      "frame": 0.16,
+      "func": "onAnimationEnd",
+      "params": [
+        "idle_1"
+      ]
+    }
+  ]
 }

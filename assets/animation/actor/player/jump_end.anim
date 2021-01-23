@@ -1,9 +1,9 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "jumping_walking",
+  "_name": "jump_end",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.2,
+  "_duration": 0.25,
   "sample": 20,
   "speed": 1,
   "wrapMode": 1,
@@ -14,25 +14,31 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "a7eafcbc-b1ec-43fe-a48e-430bfda7db72"
+              "__uuid__": "f6e49721-871b-4dad-8dad-778e260b3898"
             }
           },
           {
             "frame": 0.05,
             "value": {
-              "__uuid__": "cb846b45-b48a-4215-b0db-a5b804ef9e19"
+              "__uuid__": "5e8d4510-8384-4f0a-8bbe-323d73eaae68"
             }
           },
           {
             "frame": 0.1,
             "value": {
-              "__uuid__": "82a99c0d-081a-45f1-a727-6ea7ad00c6b8"
+              "__uuid__": "75dd8539-7b29-4815-ae28-1b1da1e7a704"
             }
           },
           {
             "frame": 0.15,
             "value": {
-              "__uuid__": "d691f2d0-f594-4324-b771-5afa1bdf9585"
+              "__uuid__": "b637c374-bf54-43c7-be8e-aa2dd621ffb0"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "eb61bebf-7863-433f-8ff1-31e570a37f6c"
             }
           }
         ]
@@ -41,10 +47,10 @@
   },
   "events": [
     {
-      "frame": 0.2,
+      "frame": 0.25,
       "func": "onAnimationEnd",
       "params": [
-        "jumping_walking"
+        "jump_end"
       ]
     }
   ]

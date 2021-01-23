@@ -9,6 +9,7 @@ import GameController from "../GameController"
 
 const { ccclass, property } = cc._decorator
 import Player from '../../actor/player/Player'
+import { DIRECTION } from "../../actor/Actor";
 
 @ccclass()
 export default class PlayerController extends GameController {
@@ -25,20 +26,23 @@ export default class PlayerController extends GameController {
     const code = event.keyCode
     switch (code) {
       case cc.macro.KEY.left:
-        this.player.direction = -1
+        this.player.move(DIRECTION.LEFT)
         break
       case cc.macro.KEY.right:
-        this.player.direction = 1
+        this.player.move(DIRECTION.RIGHT)
         break
       case cc.macro.KEY.z:
         this.player.jump()
         break
+      case cc.macro.KEY.x:
+        this.player.attack()
       default:
         break
     }
   }
   onKeyReleased(event: cc.Event.EventKeyboard) {
     const code = event.keyCode
+
     switch (code) {
       case cc.macro.KEY.left:
       case cc.macro.KEY.right:

@@ -1,0 +1,73 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "falling",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.45,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "5f01f3b6-c59a-4bb1-a2e6-58cb13e4f440"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "bf56b160-865c-47e1-814d-78cc0a93da40"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "429dda02-f191-4cbb-9a83-43db62846be1"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "e65fe02f-118c-46c5-9edb-120abcd3e4e9"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "a011655d-de50-45b8-b19f-d31204314ef2"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "21117496-7993-48c4-9279-2dd06dd58174"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "70744872-ffa2-41ed-9816-150a10a824ee"
+            }
+          },
+          {
+            "frame": 0.35,
+            "value": {
+              "__uuid__": "93454286-c1e1-4e63-967b-c39f5af2ba90"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "cb39eb2d-c975-4c69-ae1b-bd9691a9244c"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

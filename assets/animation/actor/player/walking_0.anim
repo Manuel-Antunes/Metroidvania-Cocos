@@ -108,8 +108,10 @@
   "events": [
     {
       "frame": 0.7,
-      "func": "onStartWalkingAnimationEnd",
-      "params": []
+      "func": "onAnimationEnd",
+      "params": [
+        "walking_0"
+      ]
     }
   ]
 }

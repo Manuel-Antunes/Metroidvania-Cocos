@@ -28,10 +28,10 @@ export default class PlayerStateMachine extends StateMachine<Player> {
         this.actor.setState(PLAYER_STATE.idle_1)
       }
     }
-    if ((this.actor.state === PLAYER_STATE.jumping_idle || this.actor.state === PLAYER_STATE.jumping_walking)) {
+    if ((this.actor.state === PLAYER_STATE.jumping_idle || this.actor.state === PLAYER_STATE.falling)) {
       if (this.actor.rigidBody.linearVelocity.y == 0 && this.actor.falling) {
         console.log(this.actor.rigidBody.linearVelocity.y)
-        this.actor.setState(PLAYER_STATE.idle_0)
+        this.actor.setState(PLAYER_STATE.jump_end)
       }
     }
   }
@@ -41,6 +41,21 @@ export default class PlayerStateMachine extends StateMachine<Player> {
     }
     if (animation === PLAYER_STATE.idle_1) {
       this.actor.setState(PLAYER_STATE.idle_0)
+    }
+    if (animation === PLAYER_STATE.jumping_walking) {
+      this.actor.setState(PLAYER_STATE.falling)
+    }
+    if (animation === PLAYER_STATE.jump_end) {
+      this.actor.setState(PLAYER_STATE.idle_0)
+    }
+    if (animation === PLAYER_STATE.reface) {
+      this.actor.refaceEnd()
+    }
+    if (animation === PLAYER_STATE.attacking) {
+      this.actor.setState(PLAYER_STATE.idle_0)
+    }
+    if (animation === PLAYER_STATE.attacking_jumping) {
+      this.actor.setState(PLAYER_STATE.falling)
     }
   }
 }
