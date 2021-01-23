@@ -22,6 +22,9 @@ export default class NewClass extends cc.Component {
     this.physicsManager = cc.director.getPhysicsManager()
     this.physicsManager.enabled = true
     this.physicsManager.gravity = cc.v2(0, -2000)
+    cc.director.getCollisionManager().enabledDebugDraw = true;
+    cc.director.getCollisionManager().enabled = true;
+    cc.director.getCollisionManager().enabledDrawBoundingBox = true;
   }
 
   // update (dt) {}
