@@ -25,6 +25,8 @@
     "no-underscore-dangle": "off",
     "prettier/prettier": [
       "error"
-    ]
+    ],
+    "import/no-unresolved": "off",
+    "import/extensions": "off"
   }
 }

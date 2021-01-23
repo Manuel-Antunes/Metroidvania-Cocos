@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "jumping_walking",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "a7eafcbc-b1ec-43fe-a48e-430bfda7db72"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "cb846b45-b48a-4215-b0db-a5b804ef9e19"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "82a99c0d-081a-45f1-a727-6ea7ad00c6b8"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "d691f2d0-f594-4324-b771-5afa1bdf9585"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -5,23 +5,22 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-const { ccclass, property } = cc._decorator
+import Actor from "../actor/Actor";
+
+const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
-  @property(cc.Label)
-  label: cc.Label = null
+export default class StateMachine extends cc.Component {
 
-  @property
-  text: string = 'hello'
-
+  state = []
   // LIFE-CYCLE CALLBACKS:
-  private physicsManager: cc.PhysicsManager
-
+  actor: Actor = null
   onLoad() {
-    this.physicsManager = cc.director.getPhysicsManager()
-    this.physicsManager.enabled = true
-    this.physicsManager.gravity = cc.v2(0, -2000)
+    this.actor = this.node.getComponent(Actor)
+  }
+
+  start() {
+
   }
 
   // update (dt) {}
