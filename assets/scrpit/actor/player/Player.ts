@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import Weapon from '../../item/weapon/Weapon';
 import Actor, { DIRECTION } from '../Actor';
 const { ccclass, property } = cc._decorator;
 
@@ -20,7 +21,9 @@ export enum PLAYER_STATE {
   jump_end = 'jump_end',
   reface = 'reface',
   attacking = 'attacking',
-  attacking_jumping = 'attacking_jumping'
+  attacking_jumping = 'attacking_jumping',
+  attacking_with_weapon = 'attacking_with_weapon',
+  attacking_with_weapon_jumping = 'attacking_with_weapon_jumping',
 }
 
 @ccclass
@@ -30,6 +33,11 @@ export default class Player extends Actor {
     super();
   }
 
+  @property(cc.Prefab)
+  Weapon: cc.Prefab = null
+
+  EquipedWeapon: Weapon = null
+
   state: PLAYER_STATE
 
   walkForce: number
@@ -37,12 +45,24 @@ export default class Player extends Actor {
   jumpForce: number
 
   attack() {
-    if (this.state === PLAYER_STATE.idle_0 || this.state === PLAYER_STATE.idle_1) {
-      this.setState(PLAYER_STATE.attacking)
+    if (this.state === PLAYER_STATE.idle_0 || this.state === PLAYER_STATE.idle_1 || this.state === PLAYER_STATE.walking_0 || this.state === PLAYER_STATE.walking_1) {
+      if (this.state === PLAYER_STATE.walking_0 || this.state === PLAYER_STATE.walking_1) {
+        this.rigidBody.linearVelocity = cc.v2(0, 0)
+      }
+      if (this.EquipedWeapon) {
+        this.setState(PLAYER_STATE.attacking_with_weapon)
+      } else {
+        this.setState(PLAYER_STATE.attacking)
+      }
     }
     if (this.state === PLAYER_STATE.jumping_idle || this.state === PLAYER_STATE.jumping_walking || this.state === PLAYER_STATE.falling) {
-      this.setState(PLAYER_STATE.attacking_jumping)
+      if (this.EquipedWeapon) {
+        this.setState(PLAYER_STATE.attacking_with_weapon_jumping)
+      } else {
+        this.setState(PLAYER_STATE.attacking_jumping)
+      }
     }
+    this.performAttack()
   }
 
   onLoad() {
@@ -50,6 +70,8 @@ export default class Player extends Actor {
     this.walkForce = 15000
     this.jumpForce = 300000
     this.state = PLAYER_STATE.idle_0
+    this.EquipedWeapon = this.Weapon && this.Weapon.data.getComponent<Weapon>(Weapon)
+    console.log(this.EquipedWeapon.title)
   }
   update(dt) {
     if (
@@ -60,8 +82,8 @@ export default class Player extends Actor {
     }
   }
   move(direction: DIRECTION) {
-    if (this.state !== PLAYER_STATE.reface) {
-      if (direction === this.facing || (this.state === PLAYER_STATE.jumping_walking || this.state === PLAYER_STATE.jumping_idle || this.state === PLAYER_STATE.falling)) {
+    if (this.state !== PLAYER_STATE.attacking) {
+      if (direction === this.facing) {
         this.direction = direction
       } else {
         this.reface(direction)
@@ -69,7 +91,7 @@ export default class Player extends Actor {
     }
   }
   jump() {
-    if (this.falling) {
+    if (this.falling && this.state !== PLAYER_STATE.attacking) {
       this.rigidBody.applyForceToCenter(cc.v2(0, this.jumpForce), true)
       this.falling = false
       if (this.direction === DIRECTION.IDLE) {
@@ -93,18 +115,23 @@ export default class Player extends Actor {
     }
   }
   reface(direction: DIRECTION) {
-    if (this.state !== PLAYER_STATE.jump_end && this.state !== PLAYER_STATE.jumping_walking && this.state !== PLAYER_STATE.jumping_idle && this.state !== PLAYER_STATE.falling) {
-      if (this.state !== PLAYER_STATE.idle_0 && this.state !== PLAYER_STATE.idle_1) {
-        this.setState(PLAYER_STATE.reface)
-      } else {
-        this.refaceEnd()
-      }
-      this.facing = direction
-      this.move(direction)
+    if (this.state === PLAYER_STATE.reface) {
+      this.direction = direction;
+      return
     }
+    if (this.state === PLAYER_STATE.idle_0 || this.state === PLAYER_STATE.idle_1) {
+      this.node.setScale(this.node.scaleX * -1, this.node.scaleY)
+      this.setState(PLAYER_STATE.reface)
+    } else {
+      this.refaceEnd()
+    }
+    this.facing = direction
+    this.move(direction)
   }
   refaceEnd() {
-    this.node.setScale(this.node.scaleX * -1, this.node.scaleY)
+    if (this.state !== PLAYER_STATE.reface) {
+      this.node.setScale(this.node.scaleX * -1, this.node.scaleY)
+    }
     this.setState(PLAYER_STATE.idle_1)
   }
   onCollisionEnter(other: cc.Collider, self: cc.Collider) {
@@ -117,5 +144,16 @@ export default class Player extends Actor {
     if (self.tag === 3) {
       console.log("Done colliding");
     }
+  }
+
+  performAttack() {
+    const random = Math.ceil(Math.random() * 19) + 1
+    if (this.EquipedWeapon) {
+      this.EquipedWeapon.attack(random)
+    }
+  }
+
+  getWeapon() {
+
   }
 }

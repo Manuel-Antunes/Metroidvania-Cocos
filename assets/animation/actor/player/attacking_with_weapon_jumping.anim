@@ -1,9 +1,9 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "jumping_idle",
+  "_name": "attacking_with_weapon_jumping",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.24,
+  "_duration": 0.16,
   "sample": 25,
   "speed": 1,
   "wrapMode": 1,
@@ -14,37 +14,25 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "b2ed29bb-856a-4e96-a710-e3e16403149e"
+              "__uuid__": "a7f2864c-b9ed-4cd6-a16c-0a2c3f5a86af"
             }
           },
           {
             "frame": 0.04,
             "value": {
-              "__uuid__": "bdf29731-005b-4a9a-8bee-219f6af8a561"
+              "__uuid__": "8f779582-2474-4040-b67d-81fe571c72c7"
             }
           },
           {
             "frame": 0.08,
             "value": {
-              "__uuid__": "5a8d0045-7b62-405f-8191-09559d2f1b30"
+              "__uuid__": "823f9075-9c0b-4827-a23e-d1212908104d"
             }
           },
           {
             "frame": 0.12,
             "value": {
-              "__uuid__": "ef016df7-098b-4a5b-926c-1c6b17880059"
-            }
-          },
-          {
-            "frame": 0.16,
-            "value": {
-              "__uuid__": "071336b4-011f-4c41-8dea-360954e4b12f"
-            }
-          },
-          {
-            "frame": 0.2,
-            "value": {
-              "__uuid__": "2f4f902a-5b8d-446c-a595-eb9b7a3e7061"
+              "__uuid__": "356336d3-291c-4108-87cf-aec27296297a"
             }
           }
         ]
@@ -53,10 +41,10 @@
   },
   "events": [
     {
-      "frame": 0.24,
+      "frame": 0.16,
       "func": "onAnimationEnd",
       "params": [
-        "jumping_idle"
+        "attacking_with_weapon_jumping"
       ]
     }
   ]

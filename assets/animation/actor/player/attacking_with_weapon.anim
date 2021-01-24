@@ -1,0 +1,93 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "attacking_with_weapon",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.44,
+  "sample": 25,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "ebe985cf-8366-4979-9b38-57f99ba88dad"
+            }
+          },
+          {
+            "frame": 0.04,
+            "value": {
+              "__uuid__": "e02a730f-2bc8-4970-bd73-80b778f916f3"
+            }
+          },
+          {
+            "frame": 0.08,
+            "value": {
+              "__uuid__": "76220eba-75e9-4571-ba16-325e7b1a2b05"
+            }
+          },
+          {
+            "frame": 0.12,
+            "value": {
+              "__uuid__": "7c09fe2d-7b02-4fe4-a4ca-c5f3f504f370"
+            }
+          },
+          {
+            "frame": 0.16,
+            "value": {
+              "__uuid__": "41161390-8656-4cae-9ba5-fd7f58e3b2b1"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "1ac53802-c375-421a-93da-8ee71cd930e5"
+            }
+          },
+          {
+            "frame": 0.24,
+            "value": {
+              "__uuid__": "255cf108-5b57-46b5-8e04-e25379d9406c"
+            }
+          },
+          {
+            "frame": 0.28,
+            "value": {
+              "__uuid__": "5824e472-f0b1-44d5-bfc2-f3ca67bf9f06"
+            }
+          },
+          {
+            "frame": 0.32,
+            "value": {
+              "__uuid__": "74a2ec23-adab-49fe-9afa-b27201db53f5"
+            }
+          },
+          {
+            "frame": 0.36,
+            "value": {
+              "__uuid__": "d943a1ca-cbc0-41ef-8045-c7eaad98e06c"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "6d1c415f-dd74-4db3-80d6-c2c2322ac5fe"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.44,
+      "func": "onAnimationEnd",
+      "params": [
+        "attacking_with_weapon"
+      ]
+    }
+  ]
+}
