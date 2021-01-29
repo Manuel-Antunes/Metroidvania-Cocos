@@ -11,7 +11,6 @@ const { ccclass, property } = cc._decorator
 export default abstract class GameController extends cc.Component {
 
   onLoad() {
-    console.log('ok')
     cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyPressed, this)
     cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyReleased, this)
   }

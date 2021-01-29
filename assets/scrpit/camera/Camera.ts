@@ -26,6 +26,4 @@ export default class NewClass extends cc.Component {
     targetPosition.x = cc.misc.clampf(targetPosition.x, currentX, (this.bounds.width * this.bounds.scaleX) - this.node.parent.width)
     this.node.setPosition(targetPosition);
   }
-
-
 }

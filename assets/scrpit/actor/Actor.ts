@@ -19,7 +19,9 @@ export default abstract class Actor extends cc.Component {
 
   maxVelocityX: number
 
-  falling: boolean
+  get falling() {
+    return this.rigidBody.linearVelocity.y === 0
+  }
 
   facing: DIRECTION
 
@@ -30,21 +32,16 @@ export default abstract class Actor extends cc.Component {
     this.direction = DIRECTION.IDLE
     this.maxVelocityX = 400
     this.rigidBody = this.node.getComponent(cc.RigidBody)
-    this.falling = false
     this.facing = DIRECTION.RIGHT
   }
 
   onBeginContact(contact: any, selfCollider: cc.Collider, otherCollider: cc.Collider) {
     if (selfCollider.tag === 2) {
-      this.hitTheFloor()
+      // this.hitTheFloor()
     }
     if (selfCollider.tag === 3) {
       console.log('YEah')
     }
-  }
-
-  hitTheFloor() {
-    this.falling = true
   }
 
 }

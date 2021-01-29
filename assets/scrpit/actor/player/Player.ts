@@ -33,36 +33,51 @@ export default class Player extends Actor {
     super();
   }
 
+
+  get isAttacking() {
+    return this.state === PLAYER_STATE.attacking;
+  }
+
+  attackThreshold: number = 0.7;
+
   @property(cc.Prefab)
   Weapon: cc.Prefab = null
 
   EquipedWeapon: Weapon = null
 
-  state: PLAYER_STATE
+  state: PLAYER_STATE;
 
-  walkForce: number
+  attackCoolDown: number = 0;
 
-  jumpForce: number
+  walkForce: number;
+
+  jumpForce: number;
+
+  get canAttack() {
+    return this.attackCoolDown === 0;
+  }
 
   attack() {
-    if (this.state === PLAYER_STATE.idle_0 || this.state === PLAYER_STATE.idle_1 || this.state === PLAYER_STATE.walking_0 || this.state === PLAYER_STATE.walking_1) {
-      if (this.state === PLAYER_STATE.walking_0 || this.state === PLAYER_STATE.walking_1) {
-        this.rigidBody.linearVelocity = cc.v2(0, 0)
+    if (this.canAttack) {
+      if (this.state === PLAYER_STATE.idle_0 || this.state === PLAYER_STATE.idle_1 || this.state === PLAYER_STATE.walking_0 || this.state === PLAYER_STATE.walking_1) {
+        if (this.state === PLAYER_STATE.walking_0 || this.state === PLAYER_STATE.walking_1) {
+          this.rigidBody.linearVelocity = cc.v2(0, 0)
+        }
+        if (this.EquipedWeapon) {
+          this.setState(PLAYER_STATE.attacking_with_weapon)
+        } else {
+          this.setState(PLAYER_STATE.attacking)
+        }
       }
-      if (this.EquipedWeapon) {
-        this.setState(PLAYER_STATE.attacking_with_weapon)
-      } else {
-        this.setState(PLAYER_STATE.attacking)
+      if (this.state === PLAYER_STATE.jumping_idle || this.state === PLAYER_STATE.jumping_walking || this.state === PLAYER_STATE.falling) {
+        if (this.EquipedWeapon) {
+          this.setState(PLAYER_STATE.attacking_with_weapon_jumping)
+        } else {
+          this.setState(PLAYER_STATE.attacking_jumping)
+        }
       }
+      this.performAttack()
     }
-    if (this.state === PLAYER_STATE.jumping_idle || this.state === PLAYER_STATE.jumping_walking || this.state === PLAYER_STATE.falling) {
-      if (this.EquipedWeapon) {
-        this.setState(PLAYER_STATE.attacking_with_weapon_jumping)
-      } else {
-        this.setState(PLAYER_STATE.attacking_jumping)
-      }
-    }
-    this.performAttack()
   }
 
   onLoad() {
@@ -74,11 +89,22 @@ export default class Player extends Actor {
     console.log(this.EquipedWeapon.title)
   }
   update(dt) {
-    if (
-      (this.direction > 0 && this.rigidBody.linearVelocity.x < this.maxVelocityX) ||
-      (this.direction < 0 && this.rigidBody.linearVelocity.x > -this.maxVelocityX)
-    ) {
-      this.rigidBody.applyForceToCenter(cc.v2(this.direction * this.walkForce, 0), true)
+    console.log(this.isAttacking);
+    if (!this.isAttacking) {
+      if (
+        (this.direction > 0 && this.rigidBody.linearVelocity.x < this.maxVelocityX) ||
+        (this.direction < 0 && this.rigidBody.linearVelocity.x > -this.maxVelocityX)
+      ) {
+        this.rigidBody.applyForceToCenter(cc.v2(this.direction * this.walkForce, 0), true)
+      }
+    } else {
+      console.log('aksdnlksand')
+    }
+    if (this.attackCoolDown > 0) {
+      this.attackCoolDown += dt;
+      if (this.attackCoolDown > (this.attackThreshold + 1)) {
+        this.attackCoolDown = 0;
+      }
     }
   }
   move(direction: DIRECTION) {
@@ -93,7 +119,6 @@ export default class Player extends Actor {
   jump() {
     if (this.falling && this.state !== PLAYER_STATE.attacking) {
       this.rigidBody.applyForceToCenter(cc.v2(0, this.jumpForce), true)
-      this.falling = false
       if (this.direction === DIRECTION.IDLE) {
         this.setState(PLAYER_STATE.jumping_idle)
       } else {
@@ -148,6 +173,7 @@ export default class Player extends Actor {
 
   performAttack() {
     const random = Math.ceil(Math.random() * 19) + 1
+    this.attackCoolDown = 1;
     if (this.EquipedWeapon) {
       this.EquipedWeapon.attack(random)
     }
